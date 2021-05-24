@@ -42,5 +42,7 @@
 
 -- TODO: LIMIT
 -- top 5 active users 
-SELECT DISTINCT stu_fname , login_count from students 
-ORDER BY login_count DESC LIMIT 5;  
+-- SELECT DISTINCT stu_fname , login_count from students 
+-- ORDER BY login_count DESC LIMIT 5;  
+
+
