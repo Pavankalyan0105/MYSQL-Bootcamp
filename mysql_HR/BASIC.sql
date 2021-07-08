@@ -61,7 +61,7 @@ SELECT COUNT(CITY) - COUNT(DISTINCT CITY) FROM STATION;
 SELECT DISTINCT CITY FROM STATION WHERE CITY REGEXP '^[^aeiou].*[^aeiou]$'; 
 
 
--- TODO: Query the Name of any student in STUDENTS who scored higher than  Marks. 
+-- TODO: Query the Name of any student in STUDENTS who scored higher than 75 Marks. 
 -- Order your output by the last three characters of each name. 
 -- If two or more students both have names ending in the same last three characters (i.e.: Bobby, Robby, etc.), secondary sort them by ascending ID.
 
@@ -143,3 +143,37 @@ ORDER BY N;
 -- Write a query calculating the amount of error (i.e.:  average monthly salaries), and round it up to the next integer.
 
 SELECT CEIL(AVG(SALARY) - AVG(REPLACE(SALARY , '0' , ''))) FROM EMPLOYEES;
+
+
+-- TODO: Given the CITY and COUNTRY tables, query the sum of the populations of all cities where the CONTINENT is 'Asia'.
+
+-- Note: CITY.CountryCode and COUNTRY.Code are matching key columns.
+
+SELECT SUM(CITY.POPULATION)
+FROM CITY 
+INNER JOIN COUNTRY
+ON CITY.CountryCode = COUNTRY.Code
+WHERE COUNTRY.CONTINENT = 'Asia'
+GROUP BY COUNTRY.CONTINENT;
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+-- TODO:  Given the CITY and COUNTRY tables, query the names of all cities where the CONTINENT is 'Africa'.
+
+-- Note: CITY.CountryCode and COUNTRY.Code are matching key columns.
+SELECT CITY.name
+FROM CITY 
+INNER JOIN COUNTRY
+ON CITY.CountryCode = COUNTRY.Code
+WHERE COUNTRY.CONTINENT = 'Africa';
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+-- TODO: Given the CITY and COUNTRY tables, query the names of all the continents (COUNTRY.Continent) and their respective average city populations (CITY.Population) rounded down to the nearest integer.
+
+-- Note: CITY.CountryCode and COUNTRY.Code are matching key columns.
+-- LINK https://www.hackerrank.com/challenges/average-population-of-each-continent/problem
+
+SELECT COUNTRY.Continent, FLOOR(AVG(CITY.POPULATION))
+FROM CITY 
+INNER JOIN COUNTRY
+ON CITY.CountryCode = COUNTRY.Code
+GROUP BY COUNTRY.CONTINENT;
