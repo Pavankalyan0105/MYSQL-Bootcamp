@@ -1,18 +1,12 @@
 -- TODO: m      ❌  
--- film.title , film.release_year , category.name , film.release_year
+-- which category of movies released in 2018 ? Fetch with the noof mvoies
 
--- SELECT COUNT(*)
--- FROM ((film
--- JOIN film_category ON film.film_id = film_category.film_id)
--- INNER JOIN  category ON category.category_id = film_category.category_id) WHERE film.release_year =  2018;
-
--- SELECT category.name , category.category_id,film.release_year ,film.film_id , 
--- COUNT(category.category_id) AS "NOOFFILMS" (FROM category 
--- LEFT JOIN film_category ON film_category.category_id = category.category_id); 
--- -- RIGHT JOIN film ON film.film_id = film_category.film_id) WHERE film.release_year = "2018" GROUP BY category.category_id;
-
--- -- SELECT category.name , category.category_id , film.release_year 
--- -- FROM category LEFT JOIN film_category ON category.category_id = film
+SELECT category.name , COUNT(film.release_year)
+FROM (( film
+JOIN film_category ON film.film_id = film_category.film_id)
+JOIN category ON film_category.category_id = category.category_id)
+WHERE film.release_year = 2018
+GROUP BY film.release_year;
 
 --  - - - - - -  - --  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ONE
 
@@ -42,9 +36,9 @@
 -- INSERT INTO film_actor(film_actor.actor_id, film_actor.film_id) 
 -- VALUES(105 , 41) , (95 , 41);
 
- SELECT actor.first_name , actor.actor_id FROM actor
- INNER JOIN film_actor ON actor.actor_id = film_actor.actor_id
- WHERE film_actor.actor_id = 105; 
+--  SELECT actor.first_name , actor.actor_id FROM actor
+--  INNER JOIN film_actor ON actor.actor_id = film_actor.actor_id
+--  WHERE film_actor.actor_id = 105; 
 
 
 
